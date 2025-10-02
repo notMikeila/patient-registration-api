@@ -33,9 +33,3 @@ npm start
 
 ## Register flow
 <img width="931" height="332" alt="image" src="https://github.com/notMikeila/patient-registration-api/blob/main/register-endpoint-flow.jpg?raw=true" />
-
-
-### To-do
-- Test DB connnection
-- Dockerize app
-- Update tests
