@@ -20,17 +20,21 @@ cd patient-registration-api
 ```
 
 2. Install dependencies
-``` npm install ```
+``` bash
+npm install
+```
 
 3. Update .env file with database connection string
 
 4. Start up service
-``` npm start ```
+``` bash
+npm start
+```
 
 ## Register flow
 https://github.com/notMikeila/patient-registration-api/raw/main/art/register-endpoint-flow.jpg
 
 ### To-do
 - Test DB connnection
-- Implement image save or upload
 - Dockerize app
+- Update tests

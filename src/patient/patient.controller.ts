@@ -20,7 +20,7 @@ export class PatientController {
 
   @Post('register')
   @UseInterceptors(FileInterceptor('photo_id', {
-    limits: { fileSize: 5000, files: 1 }, // 5MB and only 1 file
+    limits: { fileSize: 5e+6, files: 1 }, // 5MB and only 1 file
     storage: diskStorage({
       destination: './uploads',
       filename: (req, file, cb) => {
@@ -31,8 +31,8 @@ export class PatientController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 5000 }), // 5MB, smartphone photos should be smaller
-          new FileTypeValidator({ fileType: 'image/jpeg' }),
+          new MaxFileSizeValidator({ maxSize: 5e+6 }), // 5MB, smartphone photos should be smaller
+          new FileTypeValidator({ fileType: 'image/png', skipMagicNumbersValidation: true }), // this pipe has a known issue with file type
         ],
       }),
     )

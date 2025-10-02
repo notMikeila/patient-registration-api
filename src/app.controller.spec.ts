@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -8,15 +7,20 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
     }).compile();
 
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+  describe('health endpoints', () => {
+    it('should return health status for root endpoint', () => {
+      const result = appController.health();
+      expect(result).toEqual({ status: 200, message: 'OK' });
+    });
+
+    it('should return health status for /health endpoint', () => {
+      const result = appController.healthCheck();
+      expect(result).toEqual({ status: 200, message: 'OK' });
     });
   });
 });

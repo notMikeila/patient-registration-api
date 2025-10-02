@@ -13,6 +13,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   const port = process.env.PORT || 8080
   await app.listen(port)
-  Logger.log(`Application running on: ${process.env.PORT}`)
+  Logger.log(`Application running on port ${process.env.PORT}`)
 }
 bootstrap()
