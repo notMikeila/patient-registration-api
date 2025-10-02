@@ -32,7 +32,8 @@ npm start
 ```
 
 ## Register flow
-https://github.com/notMikeila/patient-registration-api/raw/main/art/register-endpoint-flow.jpg
+<img width="931" height="332" alt="image" src="https://github.com/notMikeila/patient-registration-api/blob/main/register-endpoint-flow.jpg?raw=true" />
+
 
 ### To-do
 - Test DB connnection
