@@ -7,15 +7,14 @@ import { RegisterPatientDto } from './patient.dto'
 import { DRIZZLE } from '../db/drizzle.module'
 import { NodePgDatabase } from 'drizzle-orm/node-postgres'
 import { usersTable } from '../db/schema'
-import { EmailService } from '../messaging/messaging.service'
 import { DrizzleQueryError } from 'drizzle-orm'
+import { MessagingService } from '../messaging/messaging.service'
 
 @Injectable()
 export class PatientService {
   constructor(
     @Inject(DRIZZLE) private readonly db: NodePgDatabase,
-    @Inject(EmailService)
-    private readonly messagingService: EmailService,
+    private readonly messagingService: MessagingService,
   ) {}
   async registerPatient(
     photo_id: Express.Multer.File,

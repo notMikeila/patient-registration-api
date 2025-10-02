@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PatientService } from './patient.service';
-import { EmailService } from '../messaging/messaging.service';
+import { MessagingService } from '../messaging/messaging.service';
 import { RegisterPatientDto } from './patient.dto';
 import { DRIZZLE } from '../db/drizzle.module';
 import { DrizzleQueryError } from 'drizzle-orm';
@@ -9,7 +9,7 @@ import { BadRequestException } from '@nestjs/common';
 describe('PatientService', () => {
   let service: PatientService;
   let mockDb: any;
-  let mockEmailService: any;
+  let mockMessagingService: any;
 
   const mockFile = {
     path: '/uploads/test-file.jpg',
@@ -36,7 +36,7 @@ describe('PatientService', () => {
       returning: jest.fn(),
     };
 
-    mockEmailService = {
+    mockMessagingService = {
       sendEmail: jest.fn(),
     };
 
@@ -48,8 +48,8 @@ describe('PatientService', () => {
           useValue: mockDb,
         },
         {
-          provide: EmailService,
-          useValue: mockEmailService,
+          provide: MessagingService,
+          useValue: mockMessagingService,
         },
       ],
     }).compile();
@@ -66,7 +66,7 @@ describe('PatientService', () => {
       const mockDbResult = [{ id: 1, name: 'John Doe', email: 'john@example.com', phone: '1234567890', photo_id_path: '/uploads/test-file.jpg' }];
 
       mockDb.returning.mockResolvedValue(mockDbResult);
-      mockEmailService.sendEmail.mockResolvedValue(undefined);
+      mockMessagingService.sendEmail.mockResolvedValue(undefined);
 
       const result = await service.registerPatient(mockFile, registerPatientDto);
 
@@ -77,7 +77,7 @@ describe('PatientService', () => {
         phone: '1234567890',
         photo_id_path: '/uploads/test-file.jpg',
       });
-      expect(mockEmailService.sendEmail).toHaveBeenCalledWith(
+      expect(mockMessagingService.sendEmail).toHaveBeenCalledWith(
         'john@example.com',
         'John Doe',
         'Gracias por registrarte con nosotros!',
