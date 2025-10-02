@@ -21,8 +21,8 @@ export class PatientService {
     registerPatientDto: RegisterPatientDto,
   ) {
     const { name, email, phone } = registerPatientDto
-    // upload image --> where?
-    // save patient data to db
+
+    // Save patient data to db
     const patientDb = await this.db
       .insert(usersTable)
       .values({
@@ -36,7 +36,8 @@ export class PatientService {
     if (patientDb.length === 0) {
       throw new InternalServerErrorException('Failed to register patient')
     }
-    // fire and forget email
+
+    // Fire and forget email
     this.messagingService.sendEmail(
       email,
       name,
