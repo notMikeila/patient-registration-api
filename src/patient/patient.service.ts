@@ -2,13 +2,12 @@ import {
   BadRequestException,
   Inject,
   Injectable,
-  InternalServerErrorException,
 } from '@nestjs/common'
 import { RegisterPatientDto } from './patient.dto'
-import { DRIZZLE } from 'src/db/drizzle.module'
+import { DRIZZLE } from '../db/drizzle.module'
 import { NodePgDatabase } from 'drizzle-orm/node-postgres'
-import { usersTable } from 'src/db/schema'
-import { EmailService } from 'src/messaging/messaging.service'
+import { usersTable } from '../db/schema'
+import { EmailService } from '../messaging/messaging.service'
 import { DrizzleQueryError } from 'drizzle-orm'
 
 @Injectable()

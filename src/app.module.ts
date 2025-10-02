@@ -3,7 +3,7 @@ import { ConfigModule } from "@nestjs/config";
 import { AppController } from "./app.controller";
 import { MessagingModule } from "./messaging/messaging.module";
 import { PatientModule } from "./patient/patient.module";
-import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
+import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler"
 
 @Module({
   controllers: [AppController],
